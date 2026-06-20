@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 22:26:56 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/20 22:31:03 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static bool	fill_stack(int argc, const char **argv, t_stack *algo)
 			{
 				num = ft_atol(values[i]);
 				if (!(num >= INT_MIN && num <= INT_MAX)
-					|| !add(&algo->a, new_node(num)))
+					|| !add_to_stack(&algo->a, new_node(num)))  // TODO: Implement
 					return (clean_up(values));
 			}
 			free(values[i]);
