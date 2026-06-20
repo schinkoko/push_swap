@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:59:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 16:57:20 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/20 22:20:56 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <limits.h>
 
 # define NO_DIFF 0
 # define SPACE_DELIMETER ' '
@@ -68,10 +69,11 @@ typedef struct s_stack
 	bool		bench;
 }	t_stack;
 
-int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
 void	set_settings(char **argv, t_stack *algo);
 int		parse_args(int argc, char **argv);
+size_t  ft_len(char **arr);
 
 #endif

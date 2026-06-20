@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 17:00:28 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/20 22:26:56 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,26 @@ static bool	clean_up(char **values)
 static bool	fill_stack(int argc, const char **argv, t_stack *algo)
 {
 	size_t	i;
-	int		num;
+	long	num;
 	char	**values;
 
 	while (argc-- > 1)
 	{
-		i = 0;
 		values = ft_split(argv[argc], SPACE_DELIMETER);
-		while (values[i])
-			++i;
+		i = ft_len(values);
 		if (!if_valid_args(values))
 			return (clean_up(values));
 		while (i)
 		{
 			if (is_numerical(values[--i]))
 			{
-				num = ft_atoi(values[i]);
-				if (!add_to_stack(&algo->a, new_node(num)))  // TODO: Implement (should also have a duplicate check)
-					return (clean_up(values), false);
+				num = ft_atol(values[i]);
+				if (!(num >= INT_MIN && num <= INT_MAX)
+					|| !add(&algo->a, new_node(num)))
+					return (clean_up(values));
 			}
 			free(values[i]);
+			values[i] = NULL;
 		}
 		free(values);
 	}

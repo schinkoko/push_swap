@@ -6,9 +6,11 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 16:45:58 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 16:46:12 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/20 22:20:15 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parse_args.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -20,11 +22,11 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned int)*s1 - (unsigned int)*s2);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	int		sign;
 	int		idx;
-	int		res;
+	long	res;
 
 	idx = 0;
 	res = 0;
@@ -43,4 +45,14 @@ int	ft_atoi(const char *str)
 	if (idx)
 		return (sign * res);
 	return (0);
+}
+
+size_t	ft_len(char	**arr)
+{
+	size_t	len;
+
+	len = 0;
+	while (arr[len])
+		++len;
+	return (len);
 }
