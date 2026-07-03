@@ -13,22 +13,22 @@
 #include "ft_printf.h"
 #include "parse_args.h"
 
-void	get_benchmarks(t_stack *algo)
+void	get_benchmarks(t_stack *push_swap)
 {
-	ft_printf("[bench] disorder:  %.2f\n", algo->disorder);
-	ft_printf("[bench] strategy:  %s\n", algo->strategy);
-	ft_printf("[bench] total_ops:  %zu\n", algo->total_ops);
-	ft_printf("[bench] ");
-	ft_printf("sa:  %zu  ", algo->operations[SA]);
-	ft_printf("sb:  %zu  ", algo->operations[SB]);
-	ft_printf("ss:  %zu  ", algo->operations[SS]);
-	ft_printf("pa:  %zu  ", algo->operations[PA]);
-	ft_printf("pb:  %zu\n", algo->operations[PB]);
-	ft_printf("[bench] ");
-	ft_printf("ra:  %zu  ", algo->operations[RA]);
-	ft_printf("rb:  %zu  ", algo->operations[RB]);
-	ft_printf("rr:  %zu  ", algo->operations[RR]);
-	ft_printf("rra:  %zu  ", algo->operations[RRA]);
-	ft_printf("rrb:  %zu  ", algo->operations[RRB]);
-	ft_printf("rrr:  %zu", algo->operations[RRR]);
+	ft_printf(stderr, "[bench] disorder:  %.2f\n", push_swap->disorder);
+	ft_printf(stderr, "[bench] strategy:  %s\n", push_swap->strategy);
+	ft_printf(stderr, "[bench] total_ops:  %i\n", push_swap->total_ops);
+	ft_printf(stderr, "[bench] ");
+	ft_printf(stderr, "sa:  %i  ", push_swap->operations[SA]);
+	ft_printf(stderr, "sb:  %i  ", push_swap->operations[SB]);
+	ft_printf(stderr, "ss:  %i  ", push_swap->operations[SS]);
+	ft_printf(stderr, "pa:  %i  ", push_swap->operations[PA]);
+	ft_printf(stderr, "pb:  %i\n", push_swap->operations[PB]);
+	ft_printf(stderr, "[bench] ");
+	ft_printf(stderr, "ra:  %i  ", push_swap->operations[RA]);
+	ft_printf(stderr, "rb:  %i  ", push_swap->operations[RB]);
+	ft_printf(stderr, "rr:  %i  ", push_swap->operations[RR]);
+	ft_printf(stderr, "rra:  %i  ", push_swap->operations[RRA]);
+	ft_printf(stderr, "rrb:  %i  ", push_swap->operations[RRB]);
+	ft_printf(stderr, "rrr:  %i", push_swap->operations[RRR]);
 }

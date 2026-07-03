@@ -6,16 +6,43 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 22:31:03 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/23 16:49:52 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "parse_args.h"
 
+static bool	is_flag(char *value, t_stack *push_swap)
+{
+	if (ft_strcmp(value, BENCH_FLAG) == NO_DIFF)
+		push_swap->bench = true;
+	else if (
+		ft_strcmp(value, SIMPLE_FLAG) == NO_DIFF
+		|| ft_strcmp(value, MEDIUM_FLAG) == NO_DIFF
+		|| ft_strcmp(value, COMPLEX_FLAG) == NO_DIFF
+		|| ft_strcmp(value, ADAPTIVE_FLAG) == NO_DIFF
+	)
+	{
+		if (push_swap->required_algo != ALGO_NONE)
+			return (false);
+		if (ft_strcmp(value, SIMPLE_FLAG) == NO_DIFF)
+			push_swap->required_algo = ALGO_SIMPLE;
+		else if (ft_strcmp(value, MEDIUM_FLAG) == NO_DIFF)
+			push_swap->required_algo = ALGO_MEDIUM;
+		else if (ft_strcmp(value, COMPLEX_FLAG) == NO_DIFF)
+			push_swap->required_algo = ALGO_COMPLEX;
+		else
+			push_swap->required_algo = ALGO_ADAPTIVE;
+	}
+	else
+		return (false);
+	return (true);
+}
+
 static bool	is_numerical(char *value)
 {
-	if (*value == '-')
+	if (*value == '-' || *value == '+')
 		++value;
 	if (!*value)
 		return (false);
@@ -28,18 +55,11 @@ static bool	is_numerical(char *value)
 	return (true);
 }
 
-static bool	if_valid_args(char **values)
+static bool	is_valid_args(char **values, t_stack *push_swap)
 {
 	while (*values)
 	{
-		if (!(
-				ft_strcmp(*values, SIMPLE_FLAG) == NO_DIFF
-				|| ft_strcmp(*values, MEDIUM_FLAG) == NO_DIFF
-				|| ft_strcmp(*values, COMPLEX_FLAG) == NO_DIFF
-				|| ft_strcmp(*values, ADAPTIVE_FLAG) == NO_DIFF
-				|| ft_strcmp(*values, BENCH_FLAG) == NO_DIFF
-				|| is_numerical(*values)
-			))
+		if (!(is_numerical(*values) || is_flag(*values, push_swap)))
 			return (false);
 		++values;
 	}
@@ -55,11 +75,11 @@ static bool	clean_up(char **values)
 		free(values[i++]);
 	free(values);
 	stack_clean();  // TODO: Implement
-	ft_printf(ERROR_MESSAGE);
+	ft_printf(stderr, PS_ERROR_MSG);
 	return (false);
 }
 
-static bool	fill_stack(int argc, const char **argv, t_stack *algo)
+bool	fill_stack(int argc, const char **argv, t_stack *push_swap)
 {
 	size_t	i;
 	long	num;
@@ -69,7 +89,7 @@ static bool	fill_stack(int argc, const char **argv, t_stack *algo)
 	{
 		values = ft_split(argv[argc], SPACE_DELIMETER);
 		i = ft_len(values);
-		if (!if_valid_args(values))
+		if (!is_valid_args(values, push_swap))
 			return (clean_up(values));
 		while (i)
 		{
@@ -77,7 +97,7 @@ static bool	fill_stack(int argc, const char **argv, t_stack *algo)
 			{
 				num = ft_atol(values[i]);
 				if (!(num >= INT_MIN && num <= INT_MAX)
-					|| !add_to_stack(&algo->a, new_node(num)))  // TODO: Implement
+					|| !add_to_stack(&push_swap->a, new_node(num)))  // TODO: Implement
 					return (clean_up(values));
 			}
 			free(values[i]);
@@ -90,11 +110,13 @@ static bool	fill_stack(int argc, const char **argv, t_stack *algo)
 
 int	parse_args(int argc, char **argv)
 {
-	t_stack	algo;
+	t_stack	push_swap;
 
-	algo.a = new_stack();  // TODO: Implement
-	if (!fill_stack(argc, argv, &algo))
+	push_swap.a = new_stack();  // TODO: Implement
+	push_swap.required_algo = ALGO_NONE;
+	push_swap.bench = false;
+	if (!fill_stack(argc, argv, &push_swap))
 		return (1);
-	set_settings(argv, &algo);
+	set_strategy(&push_swap);
 	return (0);
 }
