@@ -1,4 +1,4 @@
-#include "parse_args.h"
+#include "push_swap.h"
 
 int	ft_lstsize(t_list *lst)
 {
@@ -13,7 +13,7 @@ int	ft_lstsize(t_list *lst)
 	return (size);
 }
 
-t_list	*ft_lstnew(int value, size_t index)
+t_list	*ft_lstnew(int value)
 {
 	t_list	*new;
 
@@ -26,11 +26,11 @@ t_list	*ft_lstnew(int value, size_t index)
 	return (new);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstsecondlast(t_list *lst)
 {
-	if (!lst)
+	if (!lst || !lst->next)
 		return (NULL);
-	while (lst->next)
+	while (lst->next->next)
 		lst = lst->next;
 	return (lst);
 }
@@ -52,7 +52,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	tmp->next = new;
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(int))
 {
 	t_list	*tmp;
 
@@ -60,7 +60,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		del((*lst)->content);
+		del((*lst)->value);
+		del((*lst)->index);
 		tmp = *lst;
 		*lst = (*lst)->next;
 		free(tmp);

@@ -25,7 +25,7 @@ typedef enum e_op
 typedef struct s_list
 {
 	int				value;
-	size_t			index;
+	int				index;
 	struct s_list	*next;
 }	t_list;
 
@@ -42,5 +42,11 @@ typedef struct s_stack
 
 	bool		bench;
 }	t_stack;
+
+void	sa(t_stack *stacks);
+void	sb(t_stack *stacks);
+void	ss(t_stack *stacks);
+void	pa(t_stack *stacks);
+void	pb(t_stack *stacks);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:59:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/29 19:37:17 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:08:52 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define ERROR_MESSAGE "Error"
 
-size_t  ft_len(char **arr);
+size_t	ft_len(char **arr);
 long	ft_atol(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
