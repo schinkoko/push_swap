@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:59:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 22:20:56 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/23 16:47:13 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <limits.h>
 
 # define NO_DIFF 0
@@ -34,7 +35,16 @@
 # define ADAPTIVE_FLAG "--adaptive"
 # define BENCH_FLAG "--bench"
 
-# define ERROR_MESSAGE "Error"
+# define PS_ERROR_MSG "Error\n"
+
+typedef enum e_algo
+{
+	ALGO_NONE,
+	ALGO_SIMPLE,
+	ALGO_MEDIUM,
+	ALGO_COMPLEX,
+	ALGO_ADAPTIVE
+}	t_algo;
 
 typedef enum e_op
 {
@@ -67,13 +77,20 @@ typedef struct s_stack
 	size_t		total_ops;
 
 	bool		bench;
+	t_algo		required_algo;
 }	t_stack;
 
+// parse_args.c
+int		parse_args(int argc, char **argv);
+bool	fill_stack(int argc, const char **argv, t_stack *push_swap);
+
+// set_strategy.c
+void	set_strategy(t_stack *push_swap);
+
+// utility functions
 long	ft_atol(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
-void	set_settings(char **argv, t_stack *algo);
-int		parse_args(int argc, char **argv);
-size_t  ft_len(char **arr);
+size_t	ft_len(char **arr);
 
 #endif
