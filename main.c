@@ -1,8 +1,6 @@
-#include "push_swap.h"
-#include "parse_args.h"
-#include "ft_lstops.h"
-
 #include <stdio.h>
+
+#include "ft_lstops.h"
 
 static void	del(int value)
 {
@@ -28,13 +26,14 @@ int	main(void)
 
 	stack = calloc(1, sizeof(t_stack));
 	
-	ft_lstadd_back(&stack->b, ft_lstnew(5));
-	ft_lstadd_back(&stack->b, ft_lstnew(10));
-	ft_lstadd_back(&stack->b, ft_lstnew(8));
-	ft_lstadd_back(&stack->b, ft_lstnew(7));
-	ft_lstadd_back(&stack->b, ft_lstnew(6));
+	ft_lstadd_front(&stack->b, ft_lstnew(5));
+	ft_lstadd_front(&stack->b, ft_lstnew(10));
+	ft_lstadd_front(&stack->b, ft_lstnew(8));
+	ft_lstadd_front(&stack->b, ft_lstnew(7));
+	ft_lstadd_front(&stack->b, ft_lstnew(6));
 
-	sb(stack);
+	rrb(stack);
+	//sa(stack);
 	//pa(stack);
 	//pa(stack);
 	// pa(stack);

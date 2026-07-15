@@ -48,5 +48,11 @@ void	sb(t_stack *stacks);
 void	ss(t_stack *stacks);
 void	pa(t_stack *stacks);
 void	pb(t_stack *stacks);
+void	ra(t_stack *stacks);
+void	rb(t_stack *stacks);
+void	rr(t_stack *stacks);
+void	rra(t_stack *stacks);
+void	rrb(t_stack *stacks);
+void	rrr(t_stack *stacks);
 
 #endif

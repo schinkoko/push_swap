@@ -1,17 +1,4 @@
-#include "push_swap.h"
-
-int	ft_lstsize(t_list *lst)
-{
-	int	size;
-
-	size = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		size++;
-	}
-	return (size);
-}
+#include "ft_lstops.h"
 
 t_list	*ft_lstnew(int value)
 {
@@ -26,30 +13,21 @@ t_list	*ft_lstnew(int value)
 	return (new);
 }
 
-t_list	*ft_lstsecondlast(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst || !lst->next)
+	if (!lst)
 		return (NULL);
-	while (lst->next->next)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_list	*tmp;
-
 	if (!lst || !new)
 		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
+	new->next = *lst;
+	*lst = new;
 }
 
 void	ft_lstclear(t_list **lst, void (*del)(int))
