@@ -20,6 +20,8 @@
 # include <stdlib.h>
 # include <limits.h>
 
+#include <stdio.h>
+
 # include "ft_printf.h"
 
 /* DEFINES */
@@ -100,6 +102,7 @@ t_list	*ft_lstnew(int value);
 t_list	*ft_lstlast(t_list *lst);
 bool	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst);
+int		ft_lstsize(t_list *lst);
 
 /* OPERATIONS */
 

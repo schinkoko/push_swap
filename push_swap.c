@@ -13,6 +13,8 @@
 #include "push_swap.h"
 
 #include <stdio.h>
+#include <string.h>
+
 
 static void	printlist(t_list *tmp)
 {
@@ -35,8 +37,8 @@ void	handle_op(t_stack *push_swap, char *op_name)
 
 int	parse_args(int argc, char **argv, t_stack *push_swap)
 {
-	push_swap->required_algo = ALGO_NONE;
-	push_swap->bench = false;
+	// push_swap->required_algo = ALGO_NONE;
+	// push_swap->bench = false;
 	if (!fill_stack(argc, argv, push_swap))
 		return (1);
 	set_strategy(push_swap);
@@ -47,10 +49,13 @@ int	main(int argc, char **argv)
 {
 	t_stack	push_swap;
 
+	memset(&push_swap, 0, sizeof(t_stack));
 	parse_args(argc, argv, &push_swap);
 	rrb(&push_swap);
 	sb(&push_swap);
 	pa(&push_swap);
+	printf("strategy: %s\n", push_swap.strategy);
+	printf("bench: %i\n", push_swap.bench);
 	printf("push_swap.a:\n");
 	printlist(push_swap.a);
 	printf("push_swap.b:\n");

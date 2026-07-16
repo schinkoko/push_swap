@@ -12,26 +12,35 @@
 
 #include "push_swap.h"
 
-static double	measure_disorder(t_stack *push_swap)
+static int	value_at_index(t_list *lst, int i)
+{
+    while (i-- && lst)
+        lst = lst->next;
+    if (!lst)
+        return (0);
+    return (lst->value);
+}
+
+static double	measure_disorder(t_list *a)
 {
 	int		i;
 	int		j;
 	int		total_pairs;
 	double	mistakes;
-	size_t	lstsize;
+	int		lst_size;
 
-	lstsize = ft_lstsize(push_swap->a);
+	lst_size = ft_lstsize(a);
 	i = 0;
 	mistakes = 0;
 	total_pairs = 0;
-	if (lstsize <= 1)
+	if (lst_size <= 1)
 		return (0.0);
-	while (i < lstsize)
+	while (i < lst_size)
 	{
 		j = i + 1;
-		while (j < lstsize)
+		while (j < lst_size)
 		{
-			if (stack[i] > stack[j]) // TODO: Adjust to LL
+			if (value_at_index(a, i) > value_at_index(a, j))
 				++mistakes;
 			++total_pairs;
 			++j;

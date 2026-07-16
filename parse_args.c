@@ -81,13 +81,13 @@ static bool	clean_up(char **values, t_stack *push_swap)
 
 bool	fill_stack(int argc, char **argv, t_stack *push_swap)
 {
-	size_t	i;
-	long	num;
-	char	**values;
+    size_t	i;
+    long	num;
+    char	**values;
 
-	while (argc-- > 1)
-	{
-		values = ft_split(argv[argc], SPACE_DELIMETER);
+    while (argc-- > 1)
+    {
+        values = ft_split(argv[argc], SPACE_DELIMETER);
 		i = ft_len(values);
 		if (!is_valid_args(values, push_swap))
 			return (clean_up(values, push_swap));
