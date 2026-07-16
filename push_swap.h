@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 22:55:15 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 23:43:54 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
+int		ft_sqrt(int n);
 
 /* ARGUMENT PARSING */
 
@@ -132,11 +133,11 @@ int		parse_args(int argc, char **argv, t_stack *ps);
 
 /* SORTING UTILITIES */
 
-int		ft_sqrt(int n);
 void	assign_ranks(t_list *a);
 int		value_at_index(t_list *lst, int i);
 int		find_position(t_list *lst, int target_idx);
-void	move_to_top(t_stack *ps, t_list *lst, int target_idx);
+void	move_a_to_top(t_stack *ps, int target_idx);
+void	move_b_to_top(t_stack *ps, int target_idx);
 int		get_max_index(t_list *lst);
 int		get_min_index(t_list *lst);
 

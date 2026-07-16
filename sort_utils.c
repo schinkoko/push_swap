@@ -6,34 +6,11 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 22:15:02 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 22:32:36 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 23:53:44 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_sqrt(int n)
-{
-	int	low;
-	int	high;
-	int	mid;
-
-	if (n <= 0)
-		return (0);
-	low = 1;
-	high = n / 2 + 1;
-	while (low <= high)
-	{
-		mid = low + (high - low) / 2;
-		if (mid == n / mid && n % mid == 0)
-			return (mid);
-		else if (mid < n / mid)
-			low = mid + 1;
-		else
-			high = mid - 1;
-	}
-	return (high);
-}
 
 int	find_position(t_list *lst, int target_idx)
 {
@@ -50,15 +27,39 @@ int	find_position(t_list *lst, int target_idx)
 	return (-1);
 }
 
-void	move_to_top(t_stack *ps, t_list *lst, int target_idx)
+void	move_a_to_top(t_stack *ps, int target_idx)
 {
 	int	pos;
 	int	size;
 
-	if (!lst)
+	if (!ps || !ps->a)
 		return ;
-	size = ft_lstsize(lst);
-	pos = find_position(lst, target_idx);
+	size = ft_lstsize(ps->a);
+	pos = find_position(ps->a, target_idx);
+	if (pos == -1)
+		return ;
+	if (pos <= size / 2)
+	{
+		while (pos-- > 0)
+			ra(ps);
+	}
+	else
+	{
+		pos = size - pos;
+		while (pos-- > 0)
+			rra(ps);
+	}
+}
+
+void	move_b_to_top(t_stack *ps, int target_idx)
+{
+	int	pos;
+	int	size;
+
+	if (!ps || !ps->b)
+		return ;
+	size = ft_lstsize(ps->b);
+	pos = find_position(ps->b, target_idx);
 	if (pos == -1)
 		return ;
 	if (pos <= size / 2)

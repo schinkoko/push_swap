@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 22:54:44 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 23:41:59 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	pull_all(t_stack *ps)
 	while (size-- > 0)
 	{
 		max = get_max_index(ps->b);
-		move_to_top(ps, ps->b, max);
+		move_b_to_top(ps, max);
 		pa(ps);
 	}
 }
