@@ -1,51 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chungus_sort.c                                     :+:      :+:    :+:   */
+/*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 20:42:42 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 20:46:34 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <math.h>
-
-/*
-** Step 1: assign ranks (indexes) to each node.
-** Rank = how many nodes have a smaller value.
-** After this, node->index is the node's sorted position (0-based).
-*/
-
-static void	rank_node(t_list *target, t_list *a)
-{
-	t_list	*cur;
-	int		rank;
-
-	rank = 0;
-	cur = a;
-	while (cur)
-	{
-		if (cur->value < target->value)
-			++rank;
-		cur = cur->next;
-	}
-	target->index = rank;
-}
-
-void	assign_ranks(t_list *a)
-{
-	t_list	*cur;
-
-	cur = a;
-	while (cur)
-	{
-		rank_node(cur, a);
-		cur = cur->next;
-	}
-}
 
 /*
 ** Step 2: push nodes in chunk order to b.
