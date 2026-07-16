@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 22:58:44 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 23:07:53 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	ft_printf(STDOUT_FILENO, "ps.b:\n");
 	printlist(ps.b);
 
-	chunk_sort(&ps);
+	selection_sort(&ps);
 
 	ft_printf(STDOUT_FILENO, "ps.a:\n");
 	printlist(ps.a);
