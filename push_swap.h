@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 20:00:52 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # define SIMPLE_STRATEGY "Simple / O(n²)"
 # define MEDIUM_STRATEGY "Medium / O(n√n)"
-# define COMPLEX_STRATEGY "O(n log n)"
+# define COMPLEX_STRATEGY "Complex / O(n log n)"
 
 # define SIMPLE_FLAG "--simple"
 # define MEDIUM_FLAG "--medium"
@@ -123,6 +123,7 @@ void	rrr(t_stack *push_swap);
 size_t	ft_len(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
+char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 void	handle_op(t_stack *push_swap, char *op_name);
 

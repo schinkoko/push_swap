@@ -6,11 +6,12 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:11:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 12:08:06 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 19:51:47 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 static void	print_disorder(double disorder)
 {
 	int		hundredths;
