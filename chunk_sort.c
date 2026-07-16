@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 20:46:34 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:22:04 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,19 @@ static void	push_chunk(t_stack *ps, int start, int end)
 {
 	int	size;
 	int	mid;
+	int	remaining;
 
 	size = ft_lstsize(ps->a);
 	mid = (start + end) / 2;
-	while (ft_lstsize(ps->a) > 0)
+	remaining = end - start + 1;
+	while (remaining > 0)
 	{
 		if (ps->a->index >= start && ps->a->index <= end)
 		{
 			if (ps->a->index > mid)
 				rb(ps);
 			pb(ps);
+			--remaining;
 		}
 		else if (chunk_in_top_half(ps->a, start, end, size))
 			ra(ps);
@@ -96,7 +99,7 @@ static int	max_index_in_b(t_list *b)
 	return (max);
 }
 
-static void	bring_to_top(t_stack *ps, int target_idx)
+static void	move_to_top(t_stack *ps, int target_idx)
 {
 	int	pos;
 	int	size;
@@ -119,10 +122,10 @@ static void	pull_all(t_stack *ps)
 	int	size;
 
 	size = ft_lstsize(ps->b);
-	while (size > 0)
+	while (size-- > 0)
 	{
 		max = max_index_in_b(ps->b);
-		bring_to_top(ps, max);
+		move_to_top(ps, max);
 		pa(ps);
 	}
 }
@@ -155,11 +158,12 @@ static int	ft_sqrt(int n)
 ** Entry point: O(n√n) chunk sort.
 */
 
-void	algo_medium(t_stack *ps)
+void	chunk_sort(t_stack *ps)
 {
 	int	n;
 	int	chunk_size;
 
+	ps->presort = true;
 	n = ft_lstsize(ps->a);
 	if (n <= 1)
 		return ;

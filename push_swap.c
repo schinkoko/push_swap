@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:42:11 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,39 @@ void	handle_op(t_stack *ps, char *op_name)
 		ft_printf(STDOUT_FILENO, op_name);
 }
 
-int	parse_args(int argc, char **argv, t_stack *ps)
+void	set_ps(t_stack *ps)
 {
-	if (!fill_stack(argc, argv, ps))
-		return (1);
-	set_strategy(ps);
-	return (0);
+	ps->strategy = NULL;
+	ps->disorder = 0;
+	ps->a = NULL;
+	ps->b = NULL;
+	ps->total_ops = 0;
+	ps->bench = false;
+	ps->presort = false;
+	ps->required_algo = ALGO_NONE;
 }
+
 
 int	main(int argc, char **argv)
 {
 	t_stack	ps;
 
-	memset(&ps, 0, sizeof(t_stack));
-	parse_args(argc, argv, &ps);
-	rrb(&ps);
-	sb(&ps);
-	pa(&ps);
-	printf("strategy: %s\n", ps.strategy);
-	printf("bench: %i\n", ps.bench);
-	printf("ps.a:\n");
+	set_ps(&ps);
+	if (!fill_stack(argc, argv, &ps))
+		return (1);
 	printlist(ps.a);
-	printf("ps.b:\n");
-	printlist(ps.b);
+	printf("\n\n");
+	set_strategy(&ps);
+	printf("ra: %i", ps.required_algo);
+	if (ps.required_algo == ALGO_SIMPLE)
+		// simple_sort(&ps);  // TODO: Rename to actual sort
+		;
+	else if (ps.required_algo == ALGO_MEDIUM)
+		printf("HERE!!!"), chunk_sort(&ps);
+	else if (ps.required_algo == ALGO_COMPLEX)
+		// complex_sort(&ps);  // TODO: Rename to actual sort
+		;
+	printlist(ps.a);
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);
