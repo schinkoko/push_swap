@@ -3,32 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/07/16 22:42:11 by mtrukhin         ###   ########.fr       */
+=======
+/*   Updated: 2026/07/16 22:58:44 by aschinog         ###   ########.fr       */
+>>>>>>> refs/remotes/upstream/main
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include <stdio.h>
 #include <string.h>
 
-
-static void	printlist(t_list *tmp)
+static void	printlist(t_list *lst)
 {
-	if (!tmp)
+	if (!lst)
 		return ;
 	while (1)
 	{
-		printf("%d, %d\n", tmp->value, tmp->index);
-		if (!tmp->next)
+		ft_printf(STDOUT_FILENO, "%d, %d\n", lst->value, lst->index);
+		if (!lst->next)
 			break ;
-		tmp = tmp->next;
+		lst = lst->next;
 	}
 }
 
+<<<<<<< HEAD
 void	handle_op(t_stack *ps, char *op_name)
 {
 	if (ps->presort)
@@ -36,6 +39,9 @@ void	handle_op(t_stack *ps, char *op_name)
 }
 
 void	set_ps(t_stack *ps)
+=======
+int	parse_args(int argc, char **argv, t_stack *ps)
+>>>>>>> refs/remotes/upstream/main
 {
 	ps->strategy = NULL;
 	ps->disorder = 0;

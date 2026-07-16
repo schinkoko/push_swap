@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:18:24 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	value_at_index(t_list *lst, int i)
+int	value_at_index(t_list *lst, int i)
 {
-    while (i-- && lst)
-        lst = lst->next;
-    if (!lst)
-        return (0);
-    return (lst->value);
+	while (i-- && lst)
+		lst = lst->next;
+	if (!lst)
+		return (0);
+	return (lst->value);
 }
 
 static double	measure_disorder(t_list *a)

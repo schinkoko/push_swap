@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rot.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:57:45 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ra(t_stack *ps)
 	last = ft_lstlast(ps->a);
 	last->next = first;
 	ps->operations[RA]++;
-	handle_op(ps, "ra\n");
+	ft_printf(STDOUT_FILENO, "ra\n");
 }
 
 void	rb(t_stack *ps)
@@ -41,7 +41,7 @@ void	rb(t_stack *ps)
 	last = ft_lstlast(ps->b);
 	last->next = first;
 	ps->operations[RB]++;
-	handle_op(ps, "rb\n");
+	ft_printf(STDOUT_FILENO, "rb\n");
 }
 
 void	rra(t_stack *ps)
@@ -59,7 +59,7 @@ void	rra(t_stack *ps)
 	last->next = ps->a;
 	ps->a = last;
 	ps->operations[RRA]++;
-	handle_op(ps, "rra\n");
+	ft_printf(STDOUT_FILENO, "rra\n");
 }
 
 void	rrb(t_stack *ps)
@@ -77,5 +77,5 @@ void	rrb(t_stack *ps)
 	last->next = ps->b;
 	ps->b = last;
 	ps->operations[RRB]++;
-	handle_op(ps, "rrb\n");
+	ft_printf(STDOUT_FILENO, "rrb\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:20:23 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ static bool	clean_up(char **values, t_stack *ps)
 
 bool	fill_stack(int argc, char **argv, t_stack *ps)
 {
-    size_t	i;
-    long	num;
-    char	**values;
+	size_t	i;
+	long	num;
+	char	**values;
 
-    while (argc-- > 1)
-    {
-        values = ft_split(argv[argc], SPACE_DELIMETER);
+	while (argc-- > 1)
+	{
+		values = ft_split(argv[argc], SPACE_DELIMETER);
 		i = ft_len(values);
 		if (!is_valid_args(values, ps))
 			return (clean_up(values, ps));

@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 22:22:04 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 23:13:11 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,39 +83,6 @@ static void	push_all_chunks(t_stack *ps, int chunk_size, int n)
 ** rotate b to bring it to top, then pa.
 */
 
-static int	max_index_in_b(t_list *b)
-{
-	int		max;
-	t_list	*cur;
-
-	max = b->index;
-	cur = b->next;
-	while (cur)
-	{
-		if (cur->index > max)
-			max = cur->index;
-		cur = cur->next;
-	}
-	return (max);
-}
-
-static void	move_to_top(t_stack *ps, int target_idx)
-{
-	int	pos;
-	int	size;
-
-	pos = 0;
-	size = ft_lstsize(ps->b);
-	while (ps->b->index != target_idx)
-	{
-		if (pos < size / 2)
-			rb(ps);
-		else
-			rrb(ps);
-		++pos;
-	}
-}
-
 static void	pull_all(t_stack *ps)
 {
 	int	max;
@@ -124,34 +91,10 @@ static void	pull_all(t_stack *ps)
 	size = ft_lstsize(ps->b);
 	while (size-- > 0)
 	{
-		max = max_index_in_b(ps->b);
-		move_to_top(ps, max);
+		max = get_max_index(ps->b);
+		move_to_top(ps, ps->b, max);
 		pa(ps);
 	}
-}
-
-
-static int	ft_sqrt(int n)
-{
-	int	low;
-	int	high;
-	int	mid;
-
-	if (n <= 0)
-		return (0);
-	low = 1;
-	high = n / 2 + 1;
-	while (low <= high)
-	{
-		mid = low + (high - low) / 2;
-		if (mid == n / mid && n % mid == 0)
-			return (mid);
-		else if (mid < n / mid)
-			low = mid + 1;
-		else
-			high = mid - 1;
-	}
-	return (high);
 }
 
 /*
@@ -163,11 +106,9 @@ void	chunk_sort(t_stack *ps)
 	int	n;
 	int	chunk_size;
 
-	ps->presort = true;
 	n = ft_lstsize(ps->a);
 	if (n <= 1)
 		return ;
-	assign_ranks(ps->a);
 	chunk_size = ft_sqrt((double)n);
 	if (chunk_size < 1)
 		chunk_size = 1;
