@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 11:45:53 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,36 @@ static void	printlist(t_list *tmp)
 	}
 }
 
-void	handle_op(t_stack *push_swap, char *op_name)
+void	handle_op(t_stack *ps, char *op_name)
 {
-	if (push_swap->presort)
+	if (ps->presort)
 		ft_printf(STDOUT_FILENO, op_name);
 }
 
-int	parse_args(int argc, char **argv, t_stack *push_swap)
+int	parse_args(int argc, char **argv, t_stack *ps)
 {
-	if (!fill_stack(argc, argv, push_swap))
+	if (!fill_stack(argc, argv, ps))
 		return (1);
-	set_strategy(push_swap);
+	set_strategy(ps);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	push_swap;
+	t_stack	ps;
 
-	memset(&push_swap, 0, sizeof(t_stack));
-	parse_args(argc, argv, &push_swap);
-	rrb(&push_swap);
-	sb(&push_swap);
-	pa(&push_swap);
-	printf("strategy: %s\n", push_swap.strategy);
-	printf("bench: %i\n", push_swap.bench);
-	printf("push_swap.a:\n");
-	printlist(push_swap.a);
-	printf("push_swap.b:\n");
-	printlist(push_swap.b);
-	ft_lstclear(&push_swap.a);
-	ft_lstclear(&push_swap.b);
+	memset(&ps, 0, sizeof(t_stack));
+	parse_args(argc, argv, &ps);
+	rrb(&ps);
+	sb(&ps);
+	pa(&ps);
+	printf("strategy: %s\n", ps.strategy);
+	printf("bench: %i\n", ps.bench);
+	printf("ps.a:\n");
+	printlist(ps.a);
+	printf("ps.b:\n");
+	printlist(ps.b);
+	ft_lstclear(&ps.a);
+	ft_lstclear(&ps.b);
 	return (0);
 }

@@ -3,73 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ops_ps.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:58 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *push_swap)
+void	sa(t_stack *ps)
 {
 	int		tmp_value;
 	int		tmp_index;
 
-	if (!push_swap || !push_swap->a || !push_swap->a->next)
+	if (!ps || !ps->a || !ps->a->next)
 		return ;
-	tmp_value = push_swap->a->value;
-	tmp_index = push_swap->a->index;
-	push_swap->a->value = push_swap->a->next->value;
-	push_swap->a->index = push_swap->a->next->index;
-	push_swap->a->next->value = tmp_value;
-	push_swap->a->next->index = tmp_index;
-	push_swap->operations[SA]++;
-	handle_op(push_swap, "sa\n");
+	tmp_value = ps->a->value;
+	tmp_index = ps->a->index;
+	ps->a->value = ps->a->next->value;
+	ps->a->index = ps->a->next->index;
+	ps->a->next->value = tmp_value;
+	ps->a->next->index = tmp_index;
+	ps->operations[SA]++;
+	handle_op(ps, "sa\n");
 }
 
-void	sb(t_stack *push_swap)
+void	sb(t_stack *ps)
 {
 	int		tmp_value;
 	int		tmp_index;
 
-	if (!push_swap || !push_swap->b || !push_swap->b->next)
+	if (!ps || !ps->b || !ps->b->next)
 		return ;
-	tmp_value = push_swap->b->value;
-	tmp_index = push_swap->b->index;
-	push_swap->b->value = push_swap->b->next->value;
-	push_swap->b->index = push_swap->b->next->index;
-	push_swap->b->next->value = tmp_value;
-	push_swap->b->next->index = tmp_index;
-	push_swap->operations[SB]++;
-	handle_op(push_swap, "sb\n");
+	tmp_value = ps->b->value;
+	tmp_index = ps->b->index;
+	ps->b->value = ps->b->next->value;
+	ps->b->index = ps->b->next->index;
+	ps->b->next->value = tmp_value;
+	ps->b->next->index = tmp_index;
+	ps->operations[SB]++;
+	handle_op(ps, "sb\n");
 }
 
-void	pa(t_stack *push_swap)
+void	pa(t_stack *ps)
 {
 	t_list	*first;
 
-	if (!push_swap || !push_swap->b)
+	if (!ps || !ps->b)
 		return ;
-	first = push_swap->b;
-	push_swap->b = push_swap->b->next;
+	first = ps->b;
+	ps->b = ps->b->next;
 	first->next = NULL;
-	ft_lstadd_front(&push_swap->a, first);
-	push_swap->operations[PA]++;
-	handle_op(push_swap, "pa\n");
+	ft_lstadd_front(&ps->a, first);
+	ps->operations[PA]++;
+	handle_op(ps, "pa\n");
 }
 
-void	pb(t_stack *push_swap)
+void	pb(t_stack *ps)
 {
 	t_list	*first;
 
-	if (!push_swap || !push_swap->a)
+	if (!ps || !ps->a)
 		return ;
-	first = push_swap->a;
-	push_swap->a = push_swap->a->next;
+	first = ps->a;
+	ps->a = ps->a->next;
 	first->next = NULL;
-	ft_lstadd_front(&push_swap->b, first);
-	push_swap->operations[PB]++;
-	handle_op(push_swap, "pb\n");
+	ft_lstadd_front(&ps->b, first);
+	ps->operations[PB]++;
+	handle_op(ps, "pb\n");
 }

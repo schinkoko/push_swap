@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 20:59:05 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,17 @@ void	ft_lstclear(t_list **lst);
 
 /* OPERATIONS */
 
-void	sa(t_stack *push_swap);
-void	sb(t_stack *push_swap);
-void	ss(t_stack *push_swap);
-void	pa(t_stack *push_swap);
-void	pb(t_stack *push_swap);
-void	ra(t_stack *push_swap);
-void	rb(t_stack *push_swap);
-void	rr(t_stack *push_swap);
-void	rra(t_stack *push_swap);
-void	rrb(t_stack *push_swap);
-void	rrr(t_stack *push_swap);
+void	sa(t_stack *ps);
+void	sb(t_stack *ps);
+void	ss(t_stack *ps);
+void	pa(t_stack *ps);
+void	pb(t_stack *ps);
+void	ra(t_stack *ps);
+void	rb(t_stack *ps);
+void	rr(t_stack *ps);
+void	rra(t_stack *ps);
+void	rrb(t_stack *ps);
+void	rrr(t_stack *ps);
 
 /* UTILITY FUNCTIONS */
 
@@ -125,13 +125,13 @@ int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
-void	handle_op(t_stack *push_swap, char *op_name);
+void	handle_op(t_stack *ps, char *op_name);
 
 /* ARGUMENT PARSING */
 
-void	get_benchmarks(t_stack *push_swap);
-bool	fill_stack(int argc, char **argv, t_stack *push_swap);
-void	set_strategy(t_stack *push_swap);
-int		parse_args(int argc, char **argv, t_stack *push_swap);
+void	get_benchmarks(t_stack *ps);
+bool	fill_stack(int argc, char **argv, t_stack *ps);
+void	set_strategy(t_stack *ps);
+int		parse_args(int argc, char **argv, t_stack *ps);
 
 #endif

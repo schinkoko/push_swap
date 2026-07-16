@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ops_cmb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:32 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ss(t_stack *push_swap)
+void	ss(t_stack *ps)
 {
-	sa(push_swap);
-	sb(push_swap);
-	push_swap->operations[SS]++;
-	handle_op(push_swap, "ss\n");
+	sa(ps);
+	sb(ps);
+	ps->operations[SS]++;
+	handle_op(ps, "ss\n");
 }
 
-void	rr(t_stack *push_swap)
+void	rr(t_stack *ps)
 {
-	ra(push_swap);
-	rb(push_swap);
-	push_swap->operations[RR]++;
-	handle_op(push_swap, "rr\n");
+	ra(ps);
+	rb(ps);
+	ps->operations[RR]++;
+	handle_op(ps, "rr\n");
 }
 
-void	rrr(t_stack *push_swap)
+void	rrr(t_stack *ps)
 {
-	rra(push_swap);
-	rrb(push_swap);
-	push_swap->operations[RRR]++;
-	handle_op(push_swap, "rrr\n");
+	rra(ps);
+	rrb(ps);
+	ps->operations[RRR]++;
+	handle_op(ps, "rrr\n");
 }

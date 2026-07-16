@@ -3,79 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rot.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *push_swap)
+void	ra(t_stack *ps)
 {
 	t_list	*first;
 	t_list	*last;
 
-	if (!push_swap || !push_swap->a || !push_swap->a->next)
+	if (!ps || !ps->a || !ps->a->next)
 		return ;
-	first = push_swap->a;
-	push_swap->a = first->next;
+	first = ps->a;
+	ps->a = first->next;
 	first->next = NULL;
-	last = ft_lstlast(push_swap->a);
+	last = ft_lstlast(ps->a);
 	last->next = first;
-	push_swap->operations[RA]++;
-	handle_op(push_swap, "ra\n");
+	ps->operations[RA]++;
+	handle_op(ps, "ra\n");
 }
 
-void	rb(t_stack *push_swap)
+void	rb(t_stack *ps)
 {
 	t_list	*first;
 	t_list	*last;
 
-	if (!push_swap || !push_swap->b || !push_swap->b->next)
+	if (!ps || !ps->b || !ps->b->next)
 		return ;
-	first = push_swap->b;
-	push_swap->b = first->next;
+	first = ps->b;
+	ps->b = first->next;
 	first->next = NULL;
-	last = ft_lstlast(push_swap->b);
+	last = ft_lstlast(ps->b);
 	last->next = first;
-	push_swap->operations[RB]++;
-	handle_op(push_swap, "rb\n");
+	ps->operations[RB]++;
+	handle_op(ps, "rb\n");
 }
 
-void	rra(t_stack *push_swap)
+void	rra(t_stack *ps)
 {
 	t_list	*prev;
 	t_list	*last;
 
-	if (!push_swap || !push_swap->a || !push_swap->a->next)
+	if (!ps || !ps->a || !ps->a->next)
 		return ;
-	prev = push_swap->a;
+	prev = ps->a;
 	while (prev->next->next)
 		prev = prev->next;
 	last = prev->next;
 	prev->next = NULL;
-	last->next = push_swap->a;
-	push_swap->a = last;
-	push_swap->operations[RRA]++;
-	handle_op(push_swap, "rra\n");
+	last->next = ps->a;
+	ps->a = last;
+	ps->operations[RRA]++;
+	handle_op(ps, "rra\n");
 }
 
-void	rrb(t_stack *push_swap)
+void	rrb(t_stack *ps)
 {
 	t_list	*prev;
 	t_list	*last;
 
-	if (!push_swap || !push_swap->b || !push_swap->b->next)
+	if (!ps || !ps->b || !ps->b->next)
 		return ;
-	prev = push_swap->b;
+	prev = ps->b;
 	while (prev->next->next)
 		prev = prev->next;
 	last = prev->next;
 	prev->next = NULL;
-	last->next = push_swap->b;
-	push_swap->b = last;
-	push_swap->operations[RRB]++;
-	handle_op(push_swap, "rrb\n");
+	last->next = ps->b;
+	ps->b = last;
+	ps->operations[RRB]++;
+	handle_op(ps, "rrb\n");
 }

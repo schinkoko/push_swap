@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:11:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 19:51:47 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ static void	print_disorder(double disorder)
 	free(stringed);
 }
 
-void	get_benchmarks(t_stack *push_swap)
+void	get_benchmarks(t_stack *ps)
 {
-	print_disorder(push_swap->disorder);
-	ft_printf(STDERR_FILENO, "[bench] strategy:  %s\n", push_swap->strategy);
-	ft_printf(STDERR_FILENO, "[bench] total_ops:  %i\n", push_swap->total_ops);
+	print_disorder(ps->disorder);
+	ft_printf(STDERR_FILENO, "[bench] strategy:  %s\n", ps->strategy);
+	ft_printf(STDERR_FILENO, "[bench] total_ops:  %i\n", ps->total_ops);
 	ft_printf(STDERR_FILENO, "[bench] ");
-	ft_printf(STDERR_FILENO, "sa:  %i  ", push_swap->operations[SA]);
-	ft_printf(STDERR_FILENO, "sb:  %i  ", push_swap->operations[SB]);
-	ft_printf(STDERR_FILENO, "ss:  %i  ", push_swap->operations[SS]);
-	ft_printf(STDERR_FILENO, "pa:  %i  ", push_swap->operations[PA]);
-	ft_printf(STDERR_FILENO, "pb:  %i\n", push_swap->operations[PB]);
+	ft_printf(STDERR_FILENO, "sa:  %i  ", ps->operations[SA]);
+	ft_printf(STDERR_FILENO, "sb:  %i  ", ps->operations[SB]);
+	ft_printf(STDERR_FILENO, "ss:  %i  ", ps->operations[SS]);
+	ft_printf(STDERR_FILENO, "pa:  %i  ", ps->operations[PA]);
+	ft_printf(STDERR_FILENO, "pb:  %i\n", ps->operations[PB]);
 	ft_printf(STDERR_FILENO, "[bench] ");
-	ft_printf(STDERR_FILENO, "ra:  %i  ", push_swap->operations[RA]);
-	ft_printf(STDERR_FILENO, "rb:  %i  ", push_swap->operations[RB]);
-	ft_printf(STDERR_FILENO, "rr:  %i  ", push_swap->operations[RR]);
-	ft_printf(STDERR_FILENO, "rra:  %i  ", push_swap->operations[RRA]);
-	ft_printf(STDERR_FILENO, "rrb:  %i  ", push_swap->operations[RRB]);
-	ft_printf(STDERR_FILENO, "rrr:  %i", push_swap->operations[RRR]);
+	ft_printf(STDERR_FILENO, "ra:  %i  ", ps->operations[RA]);
+	ft_printf(STDERR_FILENO, "rb:  %i  ", ps->operations[RB]);
+	ft_printf(STDERR_FILENO, "rr:  %i  ", ps->operations[RR]);
+	ft_printf(STDERR_FILENO, "rra:  %i  ", ps->operations[RRA]);
+	ft_printf(STDERR_FILENO, "rrb:  %i  ", ps->operations[RRB]);
+	ft_printf(STDERR_FILENO, "rrr:  %i", ps->operations[RRR]);
 }

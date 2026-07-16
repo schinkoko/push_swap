@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/15 21:19:30 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ static char	*choose_adaptive_strategy(double disorder)
 	return (COMPLEX_STRATEGY);
 }
 
-void	set_strategy(t_stack *push_swap)
+void	set_strategy(t_stack *ps)
 {
 	double	disorder;
 
-	disorder = measure_disorder(push_swap->a);
-	push_swap->disorder = disorder;
-	if (push_swap->required_algo == ALGO_SIMPLE)
-		push_swap->strategy = SIMPLE_STRATEGY;
-	else if (push_swap->required_algo == ALGO_MEDIUM)
-		push_swap->strategy = MEDIUM_STRATEGY;
-	else if (push_swap->required_algo == ALGO_COMPLEX)
-		push_swap->strategy = COMPLEX_STRATEGY;
+	disorder = measure_disorder(ps->a);
+	ps->disorder = disorder;
+	if (ps->required_algo == ALGO_SIMPLE)
+		ps->strategy = SIMPLE_STRATEGY;
+	else if (ps->required_algo == ALGO_MEDIUM)
+		ps->strategy = MEDIUM_STRATEGY;
+	else if (ps->required_algo == ALGO_COMPLEX)
+		ps->strategy = COMPLEX_STRATEGY;
 	else
-		push_swap->strategy = choose_adaptive_strategy(disorder);
+		ps->strategy = choose_adaptive_strategy(disorder);
 }
