@@ -1,0 +1,117 @@
+name: push_swap CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  norminette:
+    name: Norminette
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install norminette
+        run: pip install norminette
+
+      - name: Run norminette
+        run: norminette -R CheckForbiddenSourceHeader *.c *.h
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y gcc make
+
+      - name: Build push_swap
+        run: make all
+
+      - name: Build bonus (checker)
+        run: make bonus
+        continue-on-error: true
+
+  sanitize:
+    name: AddressSanitizer Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with ASan
+        run: make all CFLAGS="-g -fsanitize=address,undefined -Wall -Wextra -Werror"
+
+      - name: Smoke test — already sorted
+        run: ./push_swap 1 2 3 4 5 | wc -l
+
+      - name: Smoke test — reverse sorted
+        run: ./push_swap 5 4 3 2 1
+
+      - name: Smoke test — single element
+        run: ./push_swap 42
+
+      - name: Smoke test — empty input (expect silence)
+        run: |
+          output=$(./push_swap 2>/dev/null || true)
+          [ -z "$output" ]
+
+      - name: Error test — duplicate values (expect Error on stderr)
+        run: |
+          ./push_swap 1 2 2 3 2>/tmp/err || true
+          grep -q "Error" /tmp/err
+
+      - name: Error test — non-integer (expect Error on stderr)
+        run: |
+          ./push_swap 1 abc 3 2>/tmp/err || true
+          grep -q "Error" /tmp/err
+
+      - name: Error test — out of range (expect Error on stderr)
+        run: |
+          ./push_swap 1 99999999999 3 2>/tmp/err || true
+          grep -q "Error" /tmp/err
+
+  performance:
+    name: Performance Benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: make all
+
+      - name: 100 numbers — must be under 2000 ops
+        run: |
+          ARG=$(shuf -i 0-9999 -n 100 | tr '\n' ' ')
+          OPS=$(./push_swap $ARG | wc -l)
+          echo "Operations for 100 numbers: $OPS"
+          [ "$OPS" -lt 2000 ]
+
+      - name: 500 numbers — must be under 12000 ops
+        run: |
+          ARG=$(shuf -i 0-9999 -n 500 | tr '\n' ' ')
+          OPS=$(./push_swap $ARG | wc -l)
+          echo "Operations for 500 numbers: $OPS"
+          [ "$OPS" -lt 12000 ]
+
+      - name: Strategy flags — --simple
+        run: |
+          ARG=$(shuf -i 0-9999 -n 20 | tr '\n' ' ')
+          ./push_swap --simple $ARG
+
+      - name: Strategy flags — --medium
+        run: |
+          ARG=$(shuf -i 0-9999 -n 20 | tr '\n' ' ')
+          ./push_swap --medium $ARG
+
+      - name: Strategy flags — --complex
+        run: |
+          ARG=$(shuf -i 0-9999 -n 20 | tr '\n' ' ')
+          ./push_swap --complex $ARG
+
+      - name: Strategy flags — --adaptive
+        run: |
+          ARG=$(shuf -i 0-9999 -n 20 | tr '\n' ' ')
+          ./push_swap --adaptive $ARG
