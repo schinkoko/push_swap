@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:55:15 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <limits.h>
-
-#include <stdio.h>
 
 # include "ft_printf.h"
 
@@ -90,7 +88,6 @@ typedef struct s_stack
 	size_t		total_ops;
 
 	bool		bench;
-	bool		presort;
 	t_algo		required_algo;
 }	t_stack;
 
@@ -125,7 +122,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
-void	handle_op(t_stack *ps, char *op_name);
 
 /* ARGUMENT PARSING */
 
@@ -133,5 +129,23 @@ void	get_benchmarks(t_stack *ps);
 bool	fill_stack(int argc, char **argv, t_stack *ps);
 void	set_strategy(t_stack *ps);
 int		parse_args(int argc, char **argv, t_stack *ps);
+
+/* SORTING UTILITIES */
+
+int		ft_sqrt(int n);
+void	assign_ranks(t_list *a);
+int		value_at_index(t_list *lst, int i);
+int		find_position(t_list *lst, int target_idx);
+void	move_to_top(t_stack *ps, t_list *lst, int target_idx);
+int		get_max_index(t_list *lst);
+int		get_min_index(t_list *lst);
+
+/* SELECTION SORT */
+
+void	selection_sort(t_stack *ps);
+
+/* CHUNK SORT */
+
+void	chunk_sort(t_stack *ps);
 
 #endif

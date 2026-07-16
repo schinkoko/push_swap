@@ -3,36 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 21:21:21 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/16 22:58:44 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include <stdio.h>
 #include <string.h>
 
-
-static void	printlist(t_list *tmp)
+static void	printlist(t_list *lst)
 {
-	if (!tmp)
+	if (!lst)
 		return ;
 	while (1)
 	{
-		printf("%d, %d\n", tmp->value, tmp->index);
-		if (!tmp->next)
+		ft_printf(STDOUT_FILENO, "%d, %d\n", lst->value, lst->index);
+		if (!lst->next)
 			break ;
-		tmp = tmp->next;
+		lst = lst->next;
 	}
-}
-
-void	handle_op(t_stack *ps, char *op_name)
-{
-	if (ps->presort)
-		ft_printf(STDOUT_FILENO, op_name);
 }
 
 int	parse_args(int argc, char **argv, t_stack *ps)
@@ -48,16 +40,25 @@ int	main(int argc, char **argv)
 	t_stack	ps;
 
 	memset(&ps, 0, sizeof(t_stack));
+
 	parse_args(argc, argv, &ps);
-	rrb(&ps);
-	sb(&ps);
-	pa(&ps);
-	printf("strategy: %s\n", ps.strategy);
-	printf("bench: %i\n", ps.bench);
-	printf("ps.a:\n");
+	ft_printf(STDOUT_FILENO, "strategy: %s\n", ps.strategy);
+	ft_printf(STDOUT_FILENO, "bench: %i\n", ps.bench);
+
+	assign_ranks(ps.a);
+
+	ft_printf(STDOUT_FILENO, "ps.a:\n");
 	printlist(ps.a);
-	printf("ps.b:\n");
+	ft_printf(STDOUT_FILENO, "ps.b:\n");
 	printlist(ps.b);
+
+	chunk_sort(&ps);
+
+	ft_printf(STDOUT_FILENO, "ps.a:\n");
+	printlist(ps.a);
+	ft_printf(STDOUT_FILENO, "ps.b:\n");
+	printlist(ps.b);
+
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);
