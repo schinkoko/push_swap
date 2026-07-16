@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:44:29 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 19:44:33 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 20:35:46 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_lstsize(t_list *lst)
+{
+	int	size;
+
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		++size;
+	}
+	return (size);
+}
 
 t_list	*ft_lstnew(int value)
 {
@@ -56,17 +69,4 @@ void	ft_lstclear(t_list **lst)
 		free(tmp);
 	}
 	*lst = NULL;
-}
-
-int	ft_lstsize(t_list *lst)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		++cnt;
-	}
-	return (cnt);
 }

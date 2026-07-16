@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 20:42:04 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ typedef struct s_stack
 
 /* LINKED LIST FUNCTIONS */
 
+int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(int value);
 t_list	*ft_lstlast(t_list *lst);
 bool	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst);
-int		ft_lstsize(t_list *lst);
 
 /* OPERATIONS */
 
@@ -123,6 +123,7 @@ void	rrr(t_stack *push_swap);
 size_t	ft_len(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
+char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 void	handle_op(t_stack *push_swap, char *op_name);
 
