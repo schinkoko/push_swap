@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 20:42:04 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 20:59:05 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # define SIMPLE_STRATEGY "Simple / O(n²)"
 # define MEDIUM_STRATEGY "Medium / O(n√n)"
-# define COMPLEX_STRATEGY "O(n log n)"
+# define COMPLEX_STRATEGY "Complex / O(n log n)"
 
 # define SIMPLE_FLAG "--simple"
 # define MEDIUM_FLAG "--medium"
