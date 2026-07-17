@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:44:29 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 20:59:23 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:52:05 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,17 @@ t_list	*ft_lstlast(t_list *lst)
 
 bool	ft_lstadd_front(t_list **lst, t_list *new)
 {
+	t_list	*tmp;
+
 	if (!lst || !new)
 		return (false);
+	tmp = *lst;
+	while (tmp)
+	{
+		if (tmp->value == new->value)
+			return (false);
+		tmp = tmp->next;
+	}
 	new->next = *lst;
 	*lst = new;
 	return (true);

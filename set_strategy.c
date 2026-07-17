@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 22:18:24 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:43:43 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,19 @@ static double	measure_disorder(t_list *a)
 	return (mistakes / total_pairs);
 }
 
-static char	*choose_adaptive_strategy(double disorder)
+static char	*choose_adaptive_strategy(t_stack *ps, double disorder)
 {
 	if (disorder < DISORDER_SIMPLE)
+	{
+		ps->required_algo = ALGO_SIMPLE;
 		return (SIMPLE_STRATEGY);
+	}
 	else if (disorder < DISORDER_MEDIUM)
+	{
+		ps->required_algo = ALGO_MEDIUM;
 		return (MEDIUM_STRATEGY);
+	}
+	ps->required_algo = ALGO_COMPLEX;
 	return (COMPLEX_STRATEGY);
 }
 
@@ -72,5 +79,5 @@ void	set_strategy(t_stack *ps)
 	else if (ps->required_algo == ALGO_COMPLEX)
 		ps->strategy = COMPLEX_STRATEGY;
 	else
-		ps->strategy = choose_adaptive_strategy(disorder);
+		ps->strategy = choose_adaptive_strategy(ps, disorder);
 }
