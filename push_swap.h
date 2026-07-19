@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/19 14:31:07 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/19 22:20:37 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ bool	fill_stack(int argc, char **argv, t_stack *ps);
 void	set_strategy(t_stack *ps);
 void	assign_ranks(t_list *a);
 void	get_benchmarks(t_stack *ps);
+void	set_ps(t_stack *ps);
 
 /* CHUNK SORT UTILITIES */
 
