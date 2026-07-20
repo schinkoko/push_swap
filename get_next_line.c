@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 21:09:48 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/20 17:51:09 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/20 19:11:04 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ char	*get_next_line(int fd)
 		return (free(big_buf), big_buf = NULL, NULL);
 	return (line);
 }
+
 /* #include <fcntl.h>
 #include <stdio.h>
 int	main(void)

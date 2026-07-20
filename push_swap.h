@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/20 17:57:55 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/20 19:10:27 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct s_stack
 
 /* UTILITY FUNCTIONS */
 
-int		ft_strlen(const char *s);
 size_t	ft_arrlen(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
@@ -152,6 +151,7 @@ int		ft_printf(int fd, const char *str, ...);
 
 /* GET_NEXT_LINE */
 
+int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
