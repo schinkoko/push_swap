@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/21 15:37:08 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 19:26:20 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,6 @@ void	set_ps(t_stack *ps);
 
 /* CHUNK SORT UTILITIES */
 
-bool	chunk_in_top_half(t_list *a, int start, int end, int size);
-void	push_chunk(t_stack *ps, int start, int end);
 void	push_all_chunks(t_stack *ps, int chunk_size, int n);
 void	pull_all(t_stack *ps);
 

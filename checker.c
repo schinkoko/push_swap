@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/20 17:13:05 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 19:33:25 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ int	main(int argc, char **argv)
 	set_ps(&ps);
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
-	line = get_next_line(0);
+	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
 		execute_op(&ps, strip_newline(line));
 		free(line);
-		line = get_next_line(0);
+		line = get_next_line(STDIN_FILENO);
 	}
 	if (is_sorted(ps.a) && !ps.b)
 		ft_printf(STDOUT_FILENO, "OK\n");

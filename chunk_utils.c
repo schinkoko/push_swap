@@ -6,30 +6,13 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 14:33:15 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 19:32:22 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	chunk_in_top_half(t_list *a, int start, int end, int size)
-{
-	t_list	*cur;
-	int		pos;
-
-	cur = a;
-	pos = 0;
-	while (cur && pos < size / 2)
-	{
-		if (cur->index >= start && cur->index <= end)
-			return (true);
-		cur = cur->next;
-		++pos;
-	}
-	return (false);
-}
-
-void	push_chunk(t_stack *ps, int start, int end)
+static void	push_chunk(t_stack *ps, int start, int end)
 {
 	int	size;
 	int	mid;
@@ -42,15 +25,10 @@ void	push_chunk(t_stack *ps, int start, int end)
 	{
 		if (ps->a->index >= start && ps->a->index <= end)
 		{
-			if (ps->a->index > mid)
-				rb(ps);
 			pb(ps);
 			--remaining;
 		}
-		else if (chunk_in_top_half(ps->a, start, end, size))
-			ra(ps);
-		else
-			rra(ps);
+		rra(ps);
 	}
 }
 

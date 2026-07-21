@@ -68,7 +68,7 @@ The project is compiled with:
 ./push_swap [--simple | --medium | --complex | --adaptive] [--bench] <integers...>
 ```
 
-`--adaptive` is the default when no strategy selector is supplied. Only one strategy selector may be used, while `--bench` can be combined with any strategy.
+`--adaptive` is the default when no strategy selector is supplied. Only one strategy selector may be used, while `--bench` can be combined with any strategy and adding it more than once doesn't change the outcome.
 
 ### Examples
 
@@ -158,16 +158,12 @@ The rank interval is divided into chunks whose width is approximately `√n`:
 chunk_size ... 2 * chunk_size - 1
 ...
 ```
+The algorithm works as follows:
 
-For each chunk, the algorithm:
-
-1. Searches A for a rank inside the active range.
-2. Checks whether an eligible node is in the upper half of A.
-3. Uses `ra` or `rra` to approach the chunk from the shorter direction.
-4. Pushes eligible nodes to B.
-5. Uses the chunk midpoint to influence B's layout.
-
-After all chunks have been transferred, the largest remaining rank in B is repeatedly moved to the top using `rb` or `rrb`, then returned to A with `pa`. Pulling maxima in descending order rebuilds A in ascending order.
+1. For each chunk it searches A for a rank inside the active range.
+2. Then pushes eligible nodes to B.
+3. Once all chunks were processed, it rotates the node with the biggest rank to the top of B.
+4. Pushes the top of B to A.
 
 This strategy accepts any value within the current range instead of searching for one exact value, reducing long rotations on medium-sized or moderately disordered inputs. The ordering of B is the key factor to monitor when validating the intended `O(n√n)` operation target.
 
