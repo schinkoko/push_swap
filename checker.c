@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 19:33:25 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 20:19:39 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ static char	*strip_newline(char *op)
 	if (len > 0 && op[len - 1] == '\n')
 		op[len - 1] = '\0';
 	return (op);
-}
-
-static bool	is_sorted(t_list *a)
-{
-	while (a && a->next)
-	{
-		if (a->value > a->next->value)
-			return (false);
-		a = a->next;
-	}
-	return (true);
 }
 
 static void	execute_op(t_stack *ps, char *op)
@@ -64,7 +53,7 @@ int	main(int argc, char **argv)
 	t_stack	ps;
 	char	*line;
 
-	if (!argv)
+	if (argc == 1)
 		return (1);
 	set_ps(&ps);
 	if (!fill_stack(argc, argv, &ps))

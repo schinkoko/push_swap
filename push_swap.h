@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/21 19:26:20 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 20:21:24 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,10 @@ char	*get_next_line(int fd);
 
 bool	fill_stack(int argc, char **argv, t_stack *ps);
 void	set_strategy(t_stack *ps);
+bool	is_sorted(t_list *a);
+void	set_ps(t_stack *ps);
 void	assign_ranks(t_list *a);
 void	print_bench(t_stack *ps);
-void	set_ps(t_stack *ps);
 
 /* CHUNK SORT UTILITIES */
 

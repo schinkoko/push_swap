@@ -6,11 +6,22 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 16:06:21 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 20:20:05 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+bool	is_sorted(t_list *a)
+{
+	while (a && a->next)
+	{
+		if (a->value > a->next->value)
+			return (false);
+		a = a->next;
+	}
+	return (true);
+}
 
 void	set_ps(t_stack *ps)
 {
