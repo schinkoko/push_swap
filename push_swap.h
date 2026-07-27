@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 01:43:46 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/28 00:22:08 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_stack
 
 size_t	ft_arrlen(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
-long	ft_atol(const char *str);
+bool	ft_atol(const char *str, long *num);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 
@@ -161,9 +161,9 @@ char	*get_next_line(int fd);
 /* ARGUMENT PARSING */
 
 bool	fill_stack(int argc, char **argv, t_stack *ps);
-bool	add_to_stack(t_stack *ps, char **values, char *value);
+bool	add_to_stack(t_stack *ps, const char *value);
 bool	is_empty_argument(char *s);
-bool	is_numerical(char *value);
+bool	is_numerical(const char *value);
 bool	clean_up(char **values, t_stack *ps);
 void	set_strategy(t_stack *ps);
 bool	is_sorted(t_list *a);
