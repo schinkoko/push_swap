@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/30 17:44:47 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 18:01:31 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int argc, char **argv)
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
 	set_strategy(&ps);
-	ss(&ps);
-	rr(&ps);
 	if (!is_sorted(ps.a))
 	{
 		assign_ranks(ps.a);

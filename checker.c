@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/30 14:27:23 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:57:46 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static char	*strip_newline(char *op)
 static bool	execute_op(t_stack *ps, char *op)
 {
 	if (ft_strcmp(op, "sa") == NO_DIFF)
-		sa(ps);
+		sa(ps, true);
 	else if (ft_strcmp(op, "sb") == NO_DIFF)
-		sb(ps);
+		sb(ps, true);
 	else if (ft_strcmp(op, "ss") == NO_DIFF)
 		ss(ps);
 	else if (ft_strcmp(op, "pa") == NO_DIFF)
@@ -43,15 +43,15 @@ static bool	execute_op(t_stack *ps, char *op)
 	else if (ft_strcmp(op, "pb") == NO_DIFF)
 		pb(ps);
 	else if (ft_strcmp(op, "ra") == NO_DIFF)
-		ra(ps);
+		ra(ps, true);
 	else if (ft_strcmp(op, "rb") == NO_DIFF)
-		rb(ps);
+		rb(ps, true);
 	else if (ft_strcmp(op, "rr") == NO_DIFF)
 		rr(ps);
 	else if (ft_strcmp(op, "rra") == NO_DIFF)
-		rra(ps);
+		rra(ps, true);
 	else if (ft_strcmp(op, "rrb") == NO_DIFF)
-		rrb(ps);
+		rrb(ps, true);
 	else if (ft_strcmp(op, "rrr") == NO_DIFF)
 		rrr(ps);
 	else

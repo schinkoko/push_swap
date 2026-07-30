@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 22:15:02 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 23:53:44 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:58:30 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	move_a_to_top(t_stack *ps, int target_idx)
 	if (pos <= size / 2)
 	{
 		while (pos-- > 0)
-			ra(ps);
+			ra(ps, true);
 	}
 	else
 	{
 		pos = size - pos;
 		while (pos-- > 0)
-			rra(ps);
+			rra(ps, true);
 	}
 }
 
@@ -65,13 +65,13 @@ void	move_b_to_top(t_stack *ps, int target_idx)
 	if (pos <= size / 2)
 	{
 		while (pos-- > 0)
-			rb(ps);
+			rb(ps, true);
 	}
 	else
 	{
 		pos = size - pos;
 		while (pos-- > 0)
-			rrb(ps);
+			rrb(ps, true);
 	}
 }
 

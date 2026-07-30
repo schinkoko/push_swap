@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_algos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 21:21:44 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/21 19:32:37 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:58:04 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	radix_sort(t_stack *ps)
 			if (((ps->a->index >> pos) & 1) == 0)
 				pb(ps);
 			else
-				ra(ps);
+				ra(ps, true);
 			i++;
 		}
 		while (ps->b)

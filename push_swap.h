@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/30 14:32:55 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:54:18 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,16 @@ void	ft_lstclear(t_list **lst);
 
 /* OPERATIONS */
 
-void	sa(t_stack *ps);
-void	sb(t_stack *ps);
+void	sa(t_stack *ps, bool direct_call);
+void	sb(t_stack *ps, bool direct_call);
 void	ss(t_stack *ps);
 void	pa(t_stack *ps);
 void	pb(t_stack *ps);
-void	ra(t_stack *ps);
-void	rb(t_stack *ps);
+void	ra(t_stack *ps, bool direct_call);
+void	rb(t_stack *ps, bool direct_call);
 void	rr(t_stack *ps);
-void	rra(t_stack *ps);
-void	rrb(t_stack *ps);
+void	rra(t_stack *ps, bool direct_call);
+void	rrb(t_stack *ps, bool direct_call);
 void	rrr(t_stack *ps);
 
 /* PRINTF */

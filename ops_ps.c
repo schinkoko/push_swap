@@ -6,13 +6,13 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:58 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/30 14:19:53 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:55:34 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *ps)
+void	sa(t_stack *ps, bool direct_call)
 {
 	int		tmp_value;
 	int		tmp_index;
@@ -25,10 +25,11 @@ void	sa(t_stack *ps)
 	ps->a->index = ps->a->next->index;
 	ps->a->next->value = tmp_value;
 	ps->a->next->index = tmp_index;
-	record_op(ps, SA, "sa");
+	if (direct_call)
+		record_op(ps, SA, "sa");
 }
 
-void	sb(t_stack *ps)
+void	sb(t_stack *ps, bool direct_call)
 {
 	int		tmp_value;
 	int		tmp_index;
@@ -41,7 +42,8 @@ void	sb(t_stack *ps)
 	ps->b->index = ps->b->next->index;
 	ps->b->next->value = tmp_value;
 	ps->b->next->index = tmp_index;
-	record_op(ps, SB, "sb");
+	if (direct_call)
+		record_op(ps, SB, "sb");
 }
 
 void	pa(t_stack *ps)

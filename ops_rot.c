@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rot.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/30 17:48:35 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:55:24 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *ps)
+void	ra(t_stack *ps, bool direct_call)
 {
 	t_list	*first;
 	t_list	*last;
@@ -24,10 +24,11 @@ void	ra(t_stack *ps)
 	first->next = NULL;
 	last = ft_lstlast(ps->a);
 	last->next = first;
-	record_op(ps, RA, "ra");
+	if (direct_call)
+		record_op(ps, RA, "ra");
 }
 
-void	rb(t_stack *ps)
+void	rb(t_stack *ps, bool direct_call)
 {
 	t_list	*first;
 	t_list	*last;
@@ -39,10 +40,11 @@ void	rb(t_stack *ps)
 	first->next = NULL;
 	last = ft_lstlast(ps->b);
 	last->next = first;
-	record_op(ps, RB, "rb");
+	if (direct_call)
+		record_op(ps, RB, "rb");
 }
 
-void	rra(t_stack *ps)
+void	rra(t_stack *ps, bool direct_call)
 {
 	t_list	*prev;
 	t_list	*last;
@@ -56,10 +58,11 @@ void	rra(t_stack *ps)
 	prev->next = NULL;
 	last->next = ps->a;
 	ps->a = last;
-	record_op(ps, RRA, "rra");
+	if (direct_call)
+		record_op(ps, RRA, "rra");
 }
 
-void	rrb(t_stack *ps)
+void	rrb(t_stack *ps, bool direct_call)
 {
 	t_list	*prev;
 	t_list	*last;
@@ -73,5 +76,6 @@ void	rrb(t_stack *ps)
 	prev->next = NULL;
 	last->next = ps->b;
 	ps->b = last;
-	record_op(ps, RRB, "rrb");
+	if (direct_call)
+		record_op(ps, RRB, "rrb");
 }
