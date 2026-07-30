@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 20:44:37 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/28 00:21:40 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static bool	is_flag(char *value, t_stack *ps)
 	return (true);
 }
 
-bool	is_numerical(char *value)
+bool	is_numerical(const char *value)
 {
 	if (*value == '-' || *value == '+')
 		++value;
@@ -99,8 +99,8 @@ bool	fill_stack(int argc, char **argv, t_stack *ps)
 			return (clean_up(values, ps));
 		while (i)
 		{
-			if (!add_to_stack(ps, values, values[--i]))
-				return (false);
+			if (!add_to_stack(ps,  values[--i]))
+				return (clean_up(values, ps));
 			free(values[i]);
 			values[i] = NULL;
 		}

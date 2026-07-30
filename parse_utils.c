@@ -3,58 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 16:45:58 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/20 17:23:59 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/27 22:47:20 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_arrlen(char	**arr)
+static bool	ft_isspace(char c)
 {
-	size_t	len;
-
-	len = 0;
-	while (arr && arr[len])
-		++len;
-	return (len);
+	return (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+static bool	parse_long_digits(
+	const char *str, unsigned long limit, int sign, long *num)
 {
-	while (*s1 && *s1 == *s2)
+	unsigned long	value;
+	int				digit;
+
+	value = 0;
+	while (*str >= '0' && *str <= '9')
 	{
-		++s1;
-		++s2;
+		digit = *str - '0';
+		if (value > (limit - digit) / 10)
+			return (false);
+		value = value * 10 + digit;
+		++str;
 	}
-	return ((unsigned int)*s1 - (unsigned int)*s2);
+	while (ft_isspace(*str))
+		++str;
+	if (*str != '\0')
+		return (false);
+	if (sign == -1 && value == (unsigned long)LONG_MAX + 1)
+		*num = LONG_MIN;
+	else if (sign == -1)
+		*num = -(long)value;
+	else
+		*num = (long)value;
+	return (true);
 }
 
-long	ft_atol(const char *str)
+bool	ft_atol(const char *str, long *num)
 {
-	int		sign;
-	int		idx;
-	long	res;
+	unsigned long	limit;
+	int				sign;
 
-	idx = 0;
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || *str == '\n' || *str == '\t'
-		|| *str == '\v' || *str == '\f' || *str == '\r')
+	if (!str || !num)
+		return (false);
+	while (ft_isspace(*str))
 		++str;
+	sign = 1;
 	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
 			sign = -1;
 		++str;
 	}
-	while (str[idx] >= '0' && str[idx] <= '9')
-		res = res * 10 + str[idx++] - '0';
-	if (idx)
-		return (sign * res);
-	return (0);
+	if (*str < '0' || *str > '9')
+		return (false);
+	limit = (unsigned long)LONG_MAX + (sign == -1);
+	return (parse_long_digits(str, limit, sign, num));
 }
 
 static size_t	int_len(int n)

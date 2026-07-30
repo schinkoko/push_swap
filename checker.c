@@ -6,11 +6,19 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/22 00:07:37 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:27:23 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	clean_up_checker(t_stack *ps, char *line)
+{
+	free(line);
+	ft_lstclear(&ps->a);
+	ft_lstclear(&ps->b);
+	return (1);
+}
 
 static char	*strip_newline(char *op)
 {
@@ -22,7 +30,7 @@ static char	*strip_newline(char *op)
 	return (op);
 }
 
-static void	execute_op(t_stack *ps, char *op)
+static bool	execute_op(t_stack *ps, char *op)
 {
 	if (ft_strcmp(op, "sa") == NO_DIFF)
 		sa(ps);
@@ -46,6 +54,9 @@ static void	execute_op(t_stack *ps, char *op)
 		rrb(ps);
 	else if (ft_strcmp(op, "rrr") == NO_DIFF)
 		rrr(ps);
+	else
+		return (ft_printf(STDERR_FILENO, PS_ERROR_MSG), false);
+	return (true);
 }
 
 int	main(int argc, char **argv)
@@ -55,13 +66,15 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (1);
-	set_ps(&ps);
+	ft_bzero(&ps, sizeof(ps));
+	ps.checker_mode = true;
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
 	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
-		execute_op(&ps, strip_newline(line));
+		if (!execute_op(&ps, strip_newline(line)))
+			return (clean_up_checker(&ps, line));
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}

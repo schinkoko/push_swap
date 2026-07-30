@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 00:18:32 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:32:55 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef enum e_op
 	RRA,
 	RRB,
 	RRR,
+	OP_TOTAL,
 	OP_COUNT
 }	t_op;
 
@@ -100,10 +101,10 @@ typedef struct s_stack
 	t_list		*a;
 	t_list		*b;
 
-	size_t		operations[OP_COUNT];
-	size_t		total_ops;
+	t_op		operations[OP_COUNT];
 
 	bool		bench;
+	bool		checker_mode;
 	t_algo		algo;
 }	t_stack;
 
@@ -113,7 +114,7 @@ typedef struct s_stack
 
 size_t	ft_arrlen(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
-long	ft_atol(const char *str);
+bool	ft_atol(const char *str, long *num);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 
@@ -148,6 +149,7 @@ int		print_ubase(int fd, uintmax_t n, uintmax_t base, const char *alphabet);
 int		print_ptr(int fd, void *n);
 int		spec_handler(int fd, va_list *lst, const char **str);
 int		ft_printf(int fd, const char *str, ...);
+void	record_op(t_stack *ps, t_op op, const char *name);
 
 /* GET_NEXT_LINE */
 
@@ -160,13 +162,13 @@ char	*get_next_line(int fd);
 /* ARGUMENT PARSING */
 
 bool	fill_stack(int argc, char **argv, t_stack *ps);
-bool	add_to_stack(t_stack *ps, char **values, char *value);
+bool	add_to_stack(t_stack *ps, const char *value);
 bool	is_empty_argument(char *s);
-bool	is_numerical(char *value);
+bool	is_numerical(const char *value);
 bool	clean_up(char **values, t_stack *ps);
 void	set_strategy(t_stack *ps);
 bool	is_sorted(t_list *a);
-void	set_ps(t_stack *ps);
+void	ft_bzero(void *s, size_t n);
 void	assign_ranks(t_list *a);
 void	print_bench(t_stack *ps);
 

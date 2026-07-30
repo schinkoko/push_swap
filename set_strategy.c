@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 20:44:04 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/28 05:06:32 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ void	set_strategy(t_stack *ps)
 	}
 }
 
-bool	add_to_stack(t_stack *ps, char **values, char *value)
+bool	add_to_stack(t_stack *ps, const char *value)
 {
 	long	num;
 
-	if (!is_numerical(value))
-		return (true);
-	num = ft_atol(value);
-	if (num < INT_MIN || num > INT_MAX
-		|| !ft_lstadd_front(&ps->a, ft_lstnew((int)num)))
-		return (clean_up(values, ps));
+	if (is_numerical(value))
+		return (
+			ft_atol(value, &num)
+			&& num >= INT_MIN && num <= INT_MAX
+			&& ft_lstadd_front(&ps->a, ft_lstnew((int)num))
+		);
 	return (true);
 }

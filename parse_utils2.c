@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_cmb.c                                          :+:      :+:    :+:   */
+/*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 19:49:32 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/30 14:18:44 by mtrukhin         ###   ########.fr       */
+/*   Created: 2026/07/27 22:47:57 by mtrukhin          #+#    #+#             */
+/*   Updated: 2026/07/27 22:48:18 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ss(t_stack *ps)
+size_t	ft_arrlen(char	**arr)
 {
-	sa(ps);
-	sb(ps);
-	record_op(ps, SS, "ss");
+	size_t	len;
+
+	len = 0;
+	while (arr && arr[len])
+		++len;
+	return (len);
 }
 
-void	rr(t_stack *ps)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ra(ps);
-	rb(ps);
-	record_op(ps, RR, "rr");
-}
-
-void	rrr(t_stack *ps)
-{
-	rra(ps);
-	rrb(ps);
-	record_op(ps, RRR, "rrr");
+	while (*s1 && *s1 == *s2)
+	{
+		++s1;
+		++s2;
+	}
+	return ((unsigned int)*s1 - (unsigned int)*s2);
 }

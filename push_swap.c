@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 00:07:45 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:26:08 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	ps;
 
-	set_ps(&ps);
+	ft_bzero(&ps, sizeof(ps));
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
 	set_strategy(&ps);
