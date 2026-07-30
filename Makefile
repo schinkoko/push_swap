@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+         #
+#    By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 20:55:09 by aschinog          #+#    #+#              #
-#    Updated: 2026/07/30 14:40:45 by mtrukhin         ###   ########.fr        #
+#    Updated: 2026/07/30 16:54:32 by aschinog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,6 @@ $(NAME): $(OBJS)
 	cc $(CFLAGS) -c -o $@ $<
 
 bonus: $(CHECKER)
-
-redo:
-	make all
-	make bonus
-	make clean
-	clear
 
 $(CHECKER): $(CHECKER_OBJS)
 	cc $(CFLAGS) -o $(CHECKER) $(CHECKER_OBJS)

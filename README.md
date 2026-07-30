@@ -250,7 +250,7 @@ printf "rra\npb\nsa\nrra\npa\n" | ./checker $ARG
 |:--|:--|:--|
 | Entry points | `push_swap.c`, `checker.c` | Main sorter and verification program |
 | Configuration | `push_swap.h`, `Makefile` | Types, constants, prototypes, build rules |
-| Parsing | `parse_args.c`, `parse_utils.c`, `ft_split.c` | Flags, integers, ranges, duplicates, argument splitting |
+| Parsing | `parse_args.c`, `parse_utils.c`, `parse_utils2.c`, `ft_split.c` | Flags, integers, ranges, duplicates, argument splitting |
 | Data structures | `ft_lstops.c`, `other_utils.c` | Linked-list management, rank assignment, benchmark state |
 | Operations | `ops_ps.c`, `ops_rot.c`, `ops_cmb.c` | Push, swap, rotate, reverse-rotate, combined operations |
 | Strategies | `set_strategy.c`, `sort_algos.c` | Disorder measurement, adaptive selection, three algorithms |

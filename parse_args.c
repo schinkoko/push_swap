@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/28 00:21:40 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 16:50:55 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ bool	fill_stack(int argc, char **argv, t_stack *ps)
 			return (clean_up(values, ps));
 		while (i)
 		{
-			if (!add_to_stack(ps,  values[--i]))
+			if (!add_to_stack(ps, values[--i]))
 				return (clean_up(values, ps));
 			free(values[i]);
 			values[i] = NULL;
