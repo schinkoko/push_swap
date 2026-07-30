@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/22 01:44:02 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:27:23 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (1);
-	set_ps(&ps);
+	ft_bzero(&ps, sizeof(ps));
 	ps.checker_mode = true;
 	if (!fill_stack(argc, argv, &ps))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/22 01:43:37 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:33:17 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,13 @@ bool	is_sorted(t_list *a)
 	return (true);
 }
 
-void	set_ps(t_stack *ps)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	char	*ptr;
 
-	ps->strategy = NULL;
-	ps->disorder = 0;
-	ps->a = NULL;
-	ps->b = NULL;
-	ps->total_ops = 0;
-	ps->bench = false;
-	ps->checker_mode = false;
-	ps->algo = ALGO_NONE;
-	i = 0;
-	while (i < OP_COUNT)
-		ps->operations[i++] = 0;
+	ptr = s;
+	while (n--)
+		*ptr++ = '\0';
 }
 
 void	assign_ranks(t_list *a)
@@ -78,11 +70,11 @@ void	print_bench(t_stack *ps)
 		"[bench] sa: %i  sb: %i  ss: %i  pa: %i  pb: %i\n"
 		"[bench] ra: %i  rb: %i  rr: %i  rra: %i  rrb: %i  rrr: %i\n",
 		stringed, (hundredths % 100) / 10, (hundredths % 100) % 10,
-		ps->strategy, ps->complexity, ps->total_ops, ps->operations[SA],
-		ps->operations[SB], ps->operations[SS], ps->operations[PA],
-		ps->operations[PB], ps->operations[RA], ps->operations[RB],
-		ps->operations[RR], ps->operations[RRA], ps->operations[RRB],
-		ps->operations[RRR]);
+		ps->strategy, ps->complexity, ps->operations[OP_TOTAL],
+		ps->operations[SA], ps->operations[SB], ps->operations[SS],
+		ps->operations[PA], ps->operations[PB], ps->operations[RA],
+		ps->operations[RB], ps->operations[RR], ps->operations[RRA],
+		ps->operations[RRB], ps->operations[RRR]);
 	free(stringed);
 }
 

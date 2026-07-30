@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/28 00:22:08 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:32:55 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef enum e_op
 	RRA,
 	RRB,
 	RRR,
+	OP_TOTAL,
 	OP_COUNT
 }	t_op;
 
@@ -100,8 +101,7 @@ typedef struct s_stack
 	t_list		*a;
 	t_list		*b;
 
-	size_t		operations[OP_COUNT];
-	size_t		total_ops;
+	t_op		operations[OP_COUNT];
 
 	bool		bench;
 	bool		checker_mode;
@@ -149,6 +149,7 @@ int		print_ubase(int fd, uintmax_t n, uintmax_t base, const char *alphabet);
 int		print_ptr(int fd, void *n);
 int		spec_handler(int fd, va_list *lst, const char **str);
 int		ft_printf(int fd, const char *str, ...);
+void	record_op(t_stack *ps, t_op op, const char *name);
 
 /* GET_NEXT_LINE */
 
@@ -167,7 +168,7 @@ bool	is_numerical(const char *value);
 bool	clean_up(char **values, t_stack *ps);
 void	set_strategy(t_stack *ps);
 bool	is_sorted(t_list *a);
-void	set_ps(t_stack *ps);
+void	ft_bzero(void *s, size_t n);
 void	assign_ranks(t_list *a);
 void	print_bench(t_stack *ps);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 19:50:48 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 14:25:46 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:33:22 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ int	ft_printf(int fd, const char *str, ...)
 	}
 	va_end(lst);
 	return (size);
+}
+
+void	record_op(t_stack *ps, t_op op, const char *name)
+{
+	ps->operations[op]++;
+	ps->operations[OP_TOTAL]++;
+	if (!ps->checker_mode)
+		ft_printf(STDOUT_FILENO, "%s\n", name);
 }

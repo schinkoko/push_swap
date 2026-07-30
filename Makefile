@@ -6,7 +6,7 @@
 #    By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 20:55:09 by aschinog          #+#    #+#              #
-#    Updated: 2026/07/27 22:50:40 by mtrukhin         ###   ########.fr        #
+#    Updated: 2026/07/30 14:40:45 by mtrukhin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CHECKER_SRCS	= checker.c chunk_utils.c ft_lstops.c ft_printf.c ft_split.c \
 OBJS			= $(SRCS:.c=.o)
 CHECKER_OBJS	= $(CHECKER_SRCS:.c=.o)
 
-CFLAGS			= -Wall -Wextra -Werror -g
+CFLAGS			= -Wall -Wextra -Werror
 
 all: $(NAME)
 

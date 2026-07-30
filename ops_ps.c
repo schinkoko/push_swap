@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_ps.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:58 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 10:42:25 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:19:53 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	sa(t_stack *ps)
 	ps->a->index = ps->a->next->index;
 	ps->a->next->value = tmp_value;
 	ps->a->next->index = tmp_index;
-	ps->operations[SA]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "sa\n");
+	record_op(ps, SA, "sa");
 }
 
 void	sb(t_stack *ps)
@@ -43,9 +41,7 @@ void	sb(t_stack *ps)
 	ps->b->index = ps->b->next->index;
 	ps->b->next->value = tmp_value;
 	ps->b->next->index = tmp_index;
-	ps->operations[SB]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "sb\n");
+	record_op(ps, SB, "sb");
 }
 
 void	pa(t_stack *ps)
@@ -58,9 +54,7 @@ void	pa(t_stack *ps)
 	ps->b = ps->b->next;
 	first->next = NULL;
 	ft_lstadd_front(&ps->a, first);
-	ps->operations[PA]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "pa\n");
+	record_op(ps, PA, "pa");
 }
 
 void	pb(t_stack *ps)
@@ -73,7 +67,5 @@ void	pb(t_stack *ps)
 	ps->a = ps->a->next;
 	first->next = NULL;
 	ft_lstadd_front(&ps->b, first);
-	ps->operations[PB]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "pb\n");
+	record_op(ps, PB, "pb");
 }

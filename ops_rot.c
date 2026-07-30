@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 01:43:06 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/30 14:20:49 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	ra(t_stack *ps)
 	first->next = NULL;
 	last = ft_lstlast(ps->a);
 	last->next = first;
-	ps->operations[RA]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "ra\n");
+	record_op(ps, RA, "ra");
 }
 
 void	rb(t_stack *ps)
@@ -41,9 +39,7 @@ void	rb(t_stack *ps)
 	first->next = NULL;
 	last = ft_lstlast(ps->b);
 	last->next = first;
-	ps->operations[RB]++;
-	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "rb\n");
+	record_op(ps, RB, "rb");
 }
 
 void	rra(t_stack *ps)
@@ -60,10 +56,7 @@ void	rra(t_stack *ps)
 	prev->next = NULL;
 	last->next = ps->a;
 	ps->a = last;
-	ps->operations[RRA]++;
-	ps->total_ops++;
-	if (!ps->checker_mode)
-		ft_printf(STDOUT_FILENO, "rra\n");
+	record_op(ps, RRA, "rra");
 }
 
 void	rrb(t_stack *ps)
@@ -80,8 +73,5 @@ void	rrb(t_stack *ps)
 	prev->next = NULL;
 	last->next = ps->b;
 	ps->b = last;
-	ps->operations[RRB]++;
-	ps->total_ops++;
-	if (!ps->checker_mode)
-		ft_printf(STDOUT_FILENO, "rrb\n");
+	record_op(ps, RRB, "rrb");
 }
